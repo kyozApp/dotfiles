@@ -1,0 +1,233 @@
+# ==============================================================================
+# ALACRITTY CONFIGURATION
+# Docs: https://alacritty.org/config-alacritty.html
+#
+# COMBINACIÓN DE COLORES
+# Zed Editor usa el tema "One Dark" (fondo #282c34).
+# Alacritty usa "Catppuccin Mocha" (fondo #1e1e2e).
+# Ambos comparten la misma familia oscura azul-morado y paleta suave:
+# reds, greens, yellows y blues de baja saturación que no fatigan la vista.
+# Resultado: al abrir Alacritty junto a Zed el contraste es natural y armónico.
+# ==============================================================================
+
+
+# ------------------------------------------------------------------------------
+# GENERAL
+# live_config_reload: Alacritty detecta cambios en este archivo y los aplica
+#                     al instante, sin necesidad de cerrar y reabrir la terminal.
+# ------------------------------------------------------------------------------
+
+[general]
+live_config_reload = true
+
+
+# ------------------------------------------------------------------------------
+# WINDOW — Apariencia de la ventana
+#
+# padding:         Espacio vacío (en píxeles) entre el texto y el borde
+#                  de la ventana. Se aplica en los 4 lados.
+# dynamic_padding: Distribuye el padding restante de forma uniforme para
+#                  que la cuadrícula de celdas quede perfectamente centrada.
+# decorations:     "Full" = barra de título y bordes estándar del sistema.
+# opacity:         Transparencia del fondo (0.0 = invisible · 1.0 = sólido).
+#                  0.95 deja ver levemente el escritorio sin perder legibilidad.
+# startup_mode:    Modo de inicio de la ventana ("Windowed" = tamaño normal).
+# dynamic_title:   Permite que el programa activo cambie el título de la ventana
+#                  (p.ej: muestra el directorio actual o el comando en ejecución).
+# ------------------------------------------------------------------------------
+
+[window]
+padding          = { x = 12, y = 12 }
+dynamic_padding  = true
+decorations      = "Full"
+opacity          = 0.95
+startup_mode     = "Windowed"
+dynamic_title    = true
+
+
+# ------------------------------------------------------------------------------
+# SCROLLING — Historial y velocidad de scroll
+#
+# history:    Cantidad máxima de líneas guardadas en el buffer de scroll.
+#             10 000 líneas permite revisar salidas largas de comandos sin perder nada.
+# multiplier: Cuántas líneas avanza por cada "tick" de la rueda del ratón.
+#             3 es el valor por defecto — cómodo para lectura rápida.
+# ------------------------------------------------------------------------------
+
+[scrolling]
+history    = 10000
+multiplier = 3
+
+
+# ------------------------------------------------------------------------------
+# FONT — Tipografía
+#
+# 0xProto Nerd Font:
+#   · Monoespaciada moderna diseñada para programación.
+#   · Incluye +3 000 íconos (Nerd Font) para git, carpetas y herramientas CLI.
+#   · Descarga: https://www.nerdfonts.com/font-downloads
+#
+# Archivos requeridos instalados en Windows:
+#   - 0xProtoNerdFont-Regular.ttf
+#   - 0xProtoNerdFont-Bold.ttf
+#   - 0xProtoNerdFont-Italic.ttf
+# ------------------------------------------------------------------------------
+
+[font]
+normal = { family = "0xProto Nerd Font", style = "Regular" }
+bold   = { family = "0xProto Nerd Font", style = "Bold" }
+italic = { family = "0xProto Nerd Font", style = "Italic" }
+size   = 11.0
+offset = { x = 0, y = 1 }
+builtin_box_drawing = true
+
+
+# ------------------------------------------------------------------------------
+# CURSOR — Estilo del cursor de texto
+#
+# style.shape:      Forma del cursor ("Block" = bloque lleno, classic de terminal).
+# style.blinking:   "On" = parpadea por defecto respetando el timeout de abajo.
+# vi_mode_style:    Cuando activas el modo Vi (Ctrl+Shift+Space) el cursor
+#                   cambia de forma para indicar visualmente que estás navegando.
+#                   "Never" = no parpadea en modo Vi para no distraer.
+# blink_interval:   Velocidad de parpadeo en milisegundos (750 ms = 0.75 s).
+# blink_timeout:    Segundos de inactividad tras los cuales el cursor deja de
+#                   parpadear. 0 = parpadea siempre.
+# unfocused_hollow: Cuando la ventana pierde el foco, el cursor se vuelve hueco
+#                   (outline) para indicar que la ventana está inactiva.
+# thickness:        Grosor relativo al ancho de la celda (0.15 = 15%).
+#                   Aplica principalmente cuando el cursor es tipo Beam o Underline.
+# ------------------------------------------------------------------------------
+
+[cursor]
+style            = { shape = "Block", blinking = "On" }
+vi_mode_style    = { shape = "Block", blinking = "Never" }
+blink_interval   = 750
+blink_timeout    = 5
+unfocused_hollow = true
+thickness        = 0.15
+
+
+# ------------------------------------------------------------------------------
+# TERMINAL — Configuración del proceso de shell
+#
+# osc52:   Controla el acceso al portapapeles del sistema vía escape sequence
+#          OSC 52 (usada por Neovim, tmux, etc.).
+#          "OnlyCopy" = los programas pueden copiar al portapapeles pero no
+#          leer de él. Balance seguro entre funcionalidad y privacidad.
+#
+# shell:   El programa que Alacritty lanza al abrirse.
+#          "powershell.exe" = PowerShell 7 en Windows.
+# ------------------------------------------------------------------------------
+
+[terminal]
+osc52 = "OnlyCopy"
+
+[terminal.shell]
+program = "powershell.exe"
+
+
+# ------------------------------------------------------------------------------
+# SELECTION — Selección de texto con el ratón
+#
+# save_to_clipboard: Copia automáticamente cualquier texto que selecciones
+#                    al portapapeles del sistema sin necesidad de Ctrl+C.
+#                    Muy cómodo para copiar rutas, URLs o salidas de comandos.
+# ------------------------------------------------------------------------------
+
+[selection]
+save_to_clipboard = true
+
+
+# ------------------------------------------------------------------------------
+# MOUSE — Comportamiento del ratón
+#
+# hide_when_typing: Oculta el puntero del ratón mientras escribes para que
+#                   no tape el texto. Reaparece al mover el ratón.
+# ------------------------------------------------------------------------------
+
+[mouse]
+hide_when_typing = true
+
+
+# ==============================================================================
+# COLORES — Catppuccin Mocha
+# https://github.com/catppuccin/alacritty
+#
+# ¿Por qué Catppuccin Mocha junto a Zed One Dark?
+#   · Zed One Dark:      fondo #282c34  (gris azulado oscuro)
+#   · Catppuccin Mocha:  fondo #1e1e2e  (azul muy oscuro)
+#   · Ambos usan fondos oscuros de la misma familia fría, sin amarillos ni
+#     marrones. Los acentos (azul, rojo, verde, amarillo) son suaves y de
+#     baja saturación, por lo que la transición visual entre las dos ventanas
+#     no cansa la vista.
+#
+# Secciones de color:
+#   primary       → fondo y texto principal de la terminal
+#   cursor        → color del cursor y el texto bajo él
+#   vi_mode_cursor→ color del cursor al activar el modo Vi
+#   selection     → texto seleccionado con el ratón
+#   search        → coincidencias al buscar con Ctrl+Shift+F
+#   footer_bar    → barra inferior (búsqueda, preview de URL, etc.)
+#   hints         → etiquetas del modo de hints (teclas para abrir URLs)
+#   normal        → los 8 colores ANSI base (negro, rojo, verde, ...)
+#   bright        → variantes brillantes de los 8 colores (para bold/énfasis)
+# ==============================================================================
+
+[colors.primary]
+background = "#1e1e2e"  # Base: fondo principal de la terminal
+foreground = "#cdd6f4"  # Text: color del texto por defecto
+
+[colors.cursor]
+text   = "#1e1e2e"  # El texto que queda "debajo" del cursor
+cursor = "#f5e0dc"  # Rosewater: color del bloque del cursor
+
+[colors.vi_mode_cursor]
+text   = "#1e1e2e"
+cursor = "#b4befe"  # Lavender: distingue visualmente el modo Vi del normal
+
+[colors.selection]
+text       = "CellForeground"   # El texto seleccionado mantiene su color original
+background = "#45475a"          # Surface1: resaltado sutil de la selección
+
+[colors.search.matches]
+foreground = "#1e1e2e"
+background = "#a6e3a1"  # Green: todas las coincidencias encontradas
+
+[colors.search.focused_match]
+foreground = "#1e1e2e"
+background = "#f9e2af"  # Yellow: la coincidencia actualmente enfocada
+
+[colors.footer_bar]
+foreground = "#1e1e2e"
+background = "#a6adc8"  # Subtext1: barra de estado inferior (búsqueda, hints)
+
+[colors.hints.start]
+foreground = "#1e1e2e"
+background = "#f9e2af"  # Yellow: primera letra de la etiqueta de hint
+
+[colors.hints.end]
+foreground = "#1e1e2e"
+background = "#a6e3a1"  # Green: letras restantes de la etiqueta de hint
+
+# Colores ANSI normales (usados por ls, git, compiladores, etc.)
+[colors.normal]
+black   = "#45475a"  # Surface1
+red     = "#f38ba8"  # Red
+green   = "#a6e3a1"  # Green
+yellow  = "#f9e2af"  # Yellow
+blue    = "#89b4fa"  # Blue
+magenta = "#f5c2e7"  # Pink
+cyan    = "#94e2d5"  # Teal
+white   = "#bac2de"  # Subtext1
+
+# Colores ANSI brillantes (usados para texto bold y énfasis especiales)
+[colors.bright]
+black   = "#585b70"  # Surface2 (más claro que el negro normal)
+red     = "#f38ba8"  # Red (igual al normal — Catppuccin no varía en bright)
+green   = "#a6e3a1"  # Green
+yellow  = "#f9e2af"  # Yellow
+blue    = "#89b4fa"  # Blue
+magenta = "#f5c2e7"  # Pink
+cyan    = "#94e2d5"  # Teal
+white   = "#a6adc8"  # Subtext0 (ligeramente más tenue para distinción visual)

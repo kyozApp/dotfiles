@@ -1,0 +1,16 @@
+{
+	"languages": {
+		"JSON": {
+			"tab_size": 2,
+			"hard_tabs": true,
+			"prettier": { "allowed": false },
+			"formatter": { "language_server": { "name": "biome" } }
+		},
+		"JSONC": {
+			"tab_size": 2,
+			"hard_tabs": true,
+			"prettier": { "allowed": false },
+			"formatter": { "language_server": { "name": "biome" } }
+		}
+	}
+}

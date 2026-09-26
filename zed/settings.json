@@ -1,0 +1,131 @@
+// ==========================================================================
+// CONFIGURACIÓN BASE GLOBAL
+// ==========================================================================
+{
+	"ssh_connections": [],
+	"format_on_save": "on",
+	"tab_size": 4,
+	"autosave": "on_focus_change",
+	"base_keymap": "VSCode",
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+
+	// ==========================================================================
+	// AUTO-INSTALACIÓN DE EXTENSIONES
+	// ==========================================================================
+	"auto_install_extensions": {
+		"html": true,
+		"git-firefly": true,
+		"toml": true,
+		"tombi": true,
+		"dockerfile": true,
+		"docker-compose": true,
+		"svelte": true,
+		"astro": true,
+		"prisma": true,
+		"biome": true,
+		"markdownlint": true,
+		"tailwindcss": true
+	},
+
+	// ==========================================================================
+	// CONEXIONES WSL
+	// ==========================================================================
+	"wsl_connections": [],
+
+	// ==========================================================================
+	// UI / APARIENCIA
+	// ==========================================================================
+	"project_panel": { "dock": "left" },
+	"outline_panel": { "dock": "left" },
+	"collaboration_panel": { "dock": "left" },
+	"git_panel": { "dock": "left" },
+	"agent": {
+		"dock": "right",
+		"default_model": {
+			"provider": "google",
+			"model": "gemini-2.5-flash",
+			"enable_thinking": true
+		},
+		"favorite_models": [],
+		"model_parameters": []
+	},
+	"ui_font_size": 16,
+	"buffer_font_size": 15,
+	"theme": {
+		"mode": "dark",
+		"light": "One Light",
+		"dark": "One Dark"
+	},
+	"icon_theme": {
+		"mode": "light",
+		"light": "VSCode Icons for Zed (Dark)",
+		"dark": "Zed (Default)"
+	},
+
+	// ==========================================================================
+	// TIPOS DE ARCHIVO
+	// ==========================================================================
+	"file_types": {
+		"HTML": ["*.html", "*.jinja", "*.jinja2"],
+		"Dockerfile": ["Dockerfile*", "dockerfile*", "*.dockerfile"]
+	},
+
+	// ==========================================================================
+	// EXCLUSIONES DE ESCANEO
+	// ==========================================================================
+	"file_scan_exclusions": [
+		"**/__pycache__",
+		"**/.pytest_cache",
+		"**/.ruff_cache",
+		"**/.ty_cache",
+		"**/*.pyc",
+		"**/.venv",
+		"**/node_modules"
+	],
+
+	// ==========================================================================
+	// LENGUAJES GLOBALES
+	// ==========================================================================
+	"languages": {
+		"Python": {
+			"language_servers": ["ty", "ruff", "!basedpyright"],
+			"formatter": { "language_server": { "name": "ruff" } },
+			"code_actions_on_format": {
+				"source.organizeImports.ruff": true,
+				"source.fixAll.ruff": true
+			}
+		},
+		"Markdown": {
+			"tab_size": 2,
+			"hard_tabs": false,
+			"formatter": "prettier",
+			"indent_list_on_tab": true,
+			"extend_list_on_newline": true,
+			"remove_trailing_whitespace_on_save": false
+		},
+		"YAML": {
+			"tab_size": 2,
+			"prettier": { "allowed": false },
+			"formatter": "language_server"
+		},
+		"Shell Script": {
+			"tab_size": 2,
+			"formatter": "language_server"
+		},
+		"Dockerfile": {
+			"tab_size": 2,
+			"formatter": "language_server"
+		},
+		"Prisma": {
+			"tab_size": 2,
+			"formatter": "language_server"
+		},
+		"TOML": {
+			"tab_size": 2,
+			"formatter": "language_server"
+		}
+	}
+}

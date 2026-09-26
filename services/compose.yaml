@@ -1,0 +1,50 @@
+name: services
+
+services:
+    db:
+        image: docker.io/library/postgres:18-alpine
+        container_name: dev_pg
+        restart: always
+        environment:
+            POSTGRES_USER: dev_user
+            POSTGRES_PASSWORD: dev_password
+        ports:
+            - "5432:5432"
+        volumes:
+            - datos_pg:/var/lib/postgresql:U
+
+    dbgate:
+        image: docker.io/dbgate/dbgate:7.3.1
+        container_name: dbgate
+        restart: always
+        ports:
+            - "8080:3000"
+        volumes:
+            - datos_dbgate:/root/.dbgate:U
+        depends_on:
+            - db
+
+    gotenberg:
+        image: docker.io/gotenberg/gotenberg:8.36.0
+        container_name: gotenberg
+        restart: always
+        ports:
+            - "3000:3000"
+
+    mailpit:
+        image: docker.io/axllent/mailpit:v1.30
+        container_name: mailpit
+        restart: always
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        environment:
+            MP_MAX_MESSAGES: 500
+            MP_DATABASE: /data/mailpit.db
+        volumes:
+            - datos_mailpit:/data:U
+
+volumes:
+    datos_pg:
+    datos_mailpit:
+    datos_dbgate:
