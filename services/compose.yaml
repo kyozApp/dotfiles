@@ -13,14 +13,14 @@ services:
         volumes:
             - datos_pg:/var/lib/postgresql:U
 
-    dbgate:
-        image: docker.io/dbgate/dbgate:7.3.1
-        container_name: dbgate
+    cloudbeaver:
+        image: docker.io/dbeaver/cloudbeaver:26.2.1
+        container_name: cloudbeaver
         restart: always
         ports:
-            - "8080:3000"
+            - "8080:8978"
         volumes:
-            - datos_dbgate:/root/.dbgate:U
+            - datos_cloudbeaver:/opt/cloudbeaver/workspace:U
         depends_on:
             - db
 
@@ -47,4 +47,4 @@ services:
 volumes:
     datos_pg:
     datos_mailpit:
-    datos_dbgate:
+    datos_cloudbeaver:
