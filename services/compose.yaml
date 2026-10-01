@@ -13,6 +13,9 @@ services:
         volumes:
             - datos_pg:/var/lib/postgresql:U
 
+    # Credenciales para CloudBeaver
+    # user: *****
+    # Passowrd *****
     cloudbeaver:
         image: docker.io/dbeaver/cloudbeaver:26.2.1
         container_name: cloudbeaver
