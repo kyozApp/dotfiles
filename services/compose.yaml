@@ -13,20 +13,6 @@ services:
         volumes:
             - datos_pg:/var/lib/postgresql:U
 
-    # Credenciales para CloudBeaver
-    # user: *****
-    # Passowrd *****
-    cloudbeaver:
-        image: docker.io/dbeaver/cloudbeaver:26.2.1
-        container_name: cloudbeaver
-        restart: always
-        ports:
-            - "8080:8978"
-        volumes:
-            - datos_cloudbeaver:/opt/cloudbeaver/workspace:U
-        depends_on:
-            - db
-
     gotenberg:
         image: docker.io/gotenberg/gotenberg:8.36.0
         container_name: gotenberg
@@ -50,4 +36,3 @@ services:
 volumes:
     datos_pg:
     datos_mailpit:
-    datos_cloudbeaver:
