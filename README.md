@@ -269,7 +269,7 @@ cd ~/services
 Inicia los servicios en segundo plano:
 
 ```bash
-podman compose up -d
+podman-compose up -d
 podman ps
 ```
 
