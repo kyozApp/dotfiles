@@ -60,7 +60,7 @@ Al volver del reinicio:
 
 > [!NOTE]
 > `networkingMode=mirrored` comparte automáticamente todos los puertos de WSL
-> con Windows (`localhost:5173`, `localhost:5432`, etc.) sin reglas de firewall.
+> con Windows (`localhost:3000`, `localhost:5432`, `localhost:8025`, etc.) sin reglas de firewall.
 
 ---
 
@@ -72,7 +72,8 @@ Al volver del reinicio:
 wsl --install -d Ubuntu-26.04 --name <nombre-instancia>
 ```
 
-Al primer inicio configura tu nombre de usuario y contraseña de Linux.
+Al primer inicio configura tu nombre de usuario y contraseña de Linux
+(Ubuntu 26.04 activa `systemd=true` automáticamente en `/etc/wsl.conf`).
 
 ### Verificar instalación
 
@@ -90,16 +91,26 @@ Entra a tu distribución:
 wsl -d <nombre-instancia> ~
 ```
 
-Actualiza los paquetes del sistema:
+Actualiza todos los paquetes y limpia archivos residuales de la imagen base:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt full-upgrade -y
+sudo apt autoremove --purge -y
+sudo apt clean
 ```
 
 Instala las utilidades esenciales:
 
 ```bash
 sudo apt install -y curl unzip build-essential
+```
+
+Desactiva la espera de red de Systemd que ralentiza el arranque en WSL:
+
+```bash
+sudo systemctl mask systemd-networkd-wait-online.service
 ```
 
 ### Configurar navegador para CLI
@@ -129,7 +140,7 @@ source ~/.bashrc
 ### Instalar Git y GitHub CLI
 
 ```bash
-sudo apt install git gh -y
+sudo apt install -y git gh
 ```
 
 ### Autenticar con GitHub
@@ -247,22 +258,18 @@ Suite de servicios compartidos con Podman Compose para todos tus proyectos local
 
 ### Desplegar servicios
 
-Crea la carpeta de servicios y el archivo de configuración:
+Crea la carpeta de servicios y copia el archivo de configuración del repositorio:
 
 ```bash
 mkdir -p ~/services
+cp ~/proyectos/dotfiles/services/compose.yaml ~/services/compose.yaml
 cd ~/services
-nano compose.yaml
 ```
-
-Abre [`services/compose.yaml`](services/compose.yaml) de este repositorio,
-copia su contenido y pégalo en el archivo. Guarda con
-`Ctrl + O` → `Enter` → `Ctrl + X`.
 
 Inicia los servicios en segundo plano:
 
 ```bash
-podman-compose up -d
+podman compose up -d
 podman ps
 ```
 
@@ -291,9 +298,10 @@ Abre tu navegador en Windows:
 
 | URL                                                   | Servicio  |
 | :---------------------------------------------------- | :-------- |
-| [localhost:8080](http://localhost:8080)               | DbGate    |
 | [localhost:8025](http://localhost:8025)               | Mailpit   |
 | [localhost:3000/health](http://localhost:3000/health) | Gotenberg |
+
+PostgreSQL queda disponible en `localhost:5432` (usuario `dev_user`).
 
 ### Conectar Zed a tu entorno WSL
 
